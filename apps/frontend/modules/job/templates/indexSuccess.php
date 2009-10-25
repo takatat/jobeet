@@ -1,3 +1,4 @@
+<?php use_stylesheet('jobs.css') ?>
 <h1>Job List</h1>
 
 <table>
