@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/takata/jobeet/lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
+require_once dirname(__FILE__).'/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration
