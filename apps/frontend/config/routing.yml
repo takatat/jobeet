@@ -1,7 +1,8 @@
 job_show_user:
-  url:   /job/:company/:location/:id/:position
-  class: sfRequestRoute
-  param: { module: job, action: show }
+  url:   /job/:company_slug/:location_slug/:id/:position_slug
+  class:   sfDoctrineRoute
+  options: { model: JobeetJob, type: object }
+  param:   { module: job, action: show }
   requirements:
     id: \d+
     sf_method: [get]
