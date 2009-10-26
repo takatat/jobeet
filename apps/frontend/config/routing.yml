@@ -1,3 +1,7 @@
+job:
+  class:   sfDoctrineRouteCollection
+  options: { model: JobeetJob }
+
 job_show_user:
   url:   /job/:company_slug/:location_slug/:id/:position_slug
   class:   sfDoctrineRoute
