@@ -14,7 +14,7 @@ class jobActions extends sfActions
   {
       $q = Doctrine_Query::create()
           ->from('JobeetJob j')
-          ->where('j.created_at > ?', date('Y-m-d h:i:s', time() - 86400 * 30));
+          ->where('j.expires_at > ?', date('Y-m-d h:i:s', time() - 86400 * 30));
  
       $this->jobeet_job_list = $q->execute();
   }
