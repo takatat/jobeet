@@ -10,6 +10,11 @@ class Jobeet
     // トリムして小文字に変換する
     $text = strtolower(trim($text, '-'));
  
+    if (empty($text))
+    {
+      return 'n-a';
+    }
+
     return $text;
   }
 }
