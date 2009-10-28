@@ -12,11 +12,7 @@ class jobActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-      $q = Doctrine_Query::create()
-          ->from('JobeetJob j')
-          ->where('j.expires_at > ?', date('Y-m-d h:i:s', time() - 86400 * 30));
- 
-      $this->jobeet_job_list = $q->execute();
+    $this->jobeet_job_list = Doctrine::getTable('JobeetJob')->getActiveJobs();
   }
 
   public function executeShow(sfWebRequest $request)
