@@ -16,6 +16,7 @@ class BaseJobeetCategoryForm extends BaseFormDoctrine
       'name'                   => new sfWidgetFormInput(),
       'created_at'             => new sfWidgetFormDateTime(),
       'updated_at'             => new sfWidgetFormDateTime(),
+      'slug'                   => new sfWidgetFormInput(),
       'jobeet_affiliates_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'JobeetAffiliate')),
     ));
 
@@ -24,11 +25,12 @@ class BaseJobeetCategoryForm extends BaseFormDoctrine
       'name'                   => new sfValidatorString(array('max_length' => 255)),
       'created_at'             => new sfValidatorDateTime(array('required' => false)),
       'updated_at'             => new sfValidatorDateTime(array('required' => false)),
+      'slug'                   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'jobeet_affiliates_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'JobeetAffiliate', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'JobeetCategory', 'column' => array('name')))
+      new sfValidatorDoctrineUnique(array('model' => 'JobeetCategory', 'column' => array('slug')))
     );
 
     $this->widgetSchema->setNameFormat('jobeet_category[%s]');
