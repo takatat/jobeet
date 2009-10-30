@@ -10,18 +10,26 @@
  */
 class jobActions extends sfActions
 {
+  public function executePublish(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $job = $this->getRoute()->getObject();
+    $job->publish();
+
+    $this->getUser()->setFlash('notice', sprintf('Your job is now online for %s days.', sfConfig::get('app_active_days')));
+
+    $this->redirect($this->generateUrl('job_show_user', $job));
+  }
+
   public function executeIndex(sfWebRequest $request)
   {
-//     $this->jobeet_job_list = Doctrine::getTable('JobeetJob')->getActiveJobs();
     $this->categories = Doctrine::getTable('JobeetCategory')->getWithJobs();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-//     $this->job = Doctrine::getTable('JobeetJob')->find($request->getParameter('id'));
     $this->job = $this->getRoute()->getObject();
-
-//     $this->forward404Unless($this->job);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -34,30 +42,20 @@ class jobActions extends sfActions
 
   public function executeCreate(sfWebRequest $request)
   {
-//     $this->forward404Unless($request->isMethod('post'));
-
     $this->form = new JobeetJobForm();
-
     $this->processForm($request, $this->form);
-
     $this->setTemplate('new');
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-//     $this->forward404Unless($jobeet_job = Doctrine::getTable('JobeetJob')->find($request->getParameter('id')), sprintf('Object jobeet_job does not exist (%s).', $request->getParameter('id')));
-//     $this->form = new JobeetJobForm($jobeet_job);
     $this->form = new JobeetJobForm($this->getRoute()->getObject());
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod('post') || $request->isMethod('put'));
-    $this->forward404Unless($jobeet_job = Doctrine::getTable('JobeetJob')->find($request->getParameter('id')), sprintf('Object jobeet_job does not exist (%s).', $request->getParameter('id')));
-    $this->form = new JobeetJobForm($jobeet_job);
-
+    $this->form = new JobeetJobForm($this->getRoute()->getObject());
     $this->processForm($request, $this->form);
-
     $this->setTemplate('edit');
   }
 
@@ -65,8 +63,6 @@ class jobActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-//     $this->forward404Unless($jobeet_job = Doctrine::getTable('JobeetJob')->find($request->getParameter('id')), sprintf('Object jobeet_job does not exist (%s).', $request->getParameter('id')));
-//     $jobeet_job->delete();
     $job = $this->getRoute()->getObject();
     $job->delete();
 
@@ -75,7 +71,6 @@ class jobActions extends sfActions
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
-//     $form->bind($request->getParameter($form->getName()));
     $form->bind(
       $request->getParameter($form->getName()),
       $request->getFiles($form->getName())
@@ -83,9 +78,9 @@ class jobActions extends sfActions
 
     if ($form->isValid())
     {
-      $jobeet_job = $form->save();
+      $job = $form->save();
 
-      $this->redirect('job/edit?id='.$jobeet_job->getId());
+      $this->redirect($this->generateUrl('job_show', $job));
     }
   }
 }
