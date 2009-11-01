@@ -3,6 +3,8 @@
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
  
 $browser = new JobeetTestFunctional(new sfBrowser());
+$browser->setTester('doctrine', 'sfTesterDoctrine');
+
 $browser->loadData();
  
 $browser->info('1 - The homepage')->
@@ -100,6 +102,13 @@ $browser->info('3 - Post a Job page')->
   with('request')->begin()->
     isParameter('module', 'job')->
     isParameter('action', 'show')->
-    end()
-;
+    end()->
 
+  with('doctrine')->begin()->
+    check('JobeetJob', array(
+      'location'     => 'Atlanta, USA',
+      'is_activated' => false,
+      'is_public'    => false,
+    ))->
+  end()
+;
