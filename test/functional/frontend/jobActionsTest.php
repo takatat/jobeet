@@ -112,3 +112,22 @@ $browser->info('3 - Post a Job page')->
     ))->
   end()
 ;
+
+$browser->
+  info('  3.2 - Submit a Job with invalid values')->
+ 
+  get('/job/new')->
+  click('Preview your job', array('job' => array(
+    'company'      => 'Sensio Labs',
+    'position'     => 'Developer',
+    'location'     => 'Atlanta, USA',
+    'email'        => 'not.an.email',
+  )))->
+ 
+  with('form')->begin()->
+    hasErrors(3)->
+    isError('description', 'required')->
+    isError('how_to_apply', 'required')->
+    isError('email', 'invalid')->
+  end()
+;
