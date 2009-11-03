@@ -29,6 +29,10 @@ generator:
         batch_actions:
           _delete:    ~
           extend:     ~
+        object_actions:
+          extend:     ~
+          _edit:      ~
+          _delete:    ~
       filter:  ~
       form:    ~
       edit:    

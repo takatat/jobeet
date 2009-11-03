@@ -30,4 +30,14 @@ class jobActions extends autoJobActions
  
     $this->redirect('@jobeet_job_job');
   }
+
+  public function executeListExtend(sfWebRequest $request)
+  {
+    $job = $this->getRoute()->getObject();
+    $job->extend(true);
+ 
+    $this->getUser()->setFlash('notice', 'The selected jobs have been extended successfully.');
+ 
+    $this->redirect('@jobeet_job_job');
+  }
 }
