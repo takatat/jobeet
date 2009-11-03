@@ -26,6 +26,9 @@ generator:
           is_public:    { label: "Public? (label for the list)" }
         sort: [expires_at, desc]
         max_per_page: 10
+        batch_actions:
+          _delete:    ~
+          extend:     ~
       filter:  ~
       form:    ~
       edit:    
