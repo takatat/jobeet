@@ -24,6 +24,7 @@ generator:
            (<em>%%email%%</em>) is looking for a %%=position%% (%%location%%)
         fields:
           is_public:    { label: "Public? (label for the list)" }
+        sort: [expires_at, desc]
       filter:  ~
       form:    ~
       edit:    
