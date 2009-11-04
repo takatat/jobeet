@@ -35,6 +35,7 @@ generator:
           _delete:    ~
         actions:
           deleteNeverActivated: { label: Delete never activated jobs }
+        table_method: retrieveBackendJobList
       filter:  ~
       form:    ~
       edit:    
