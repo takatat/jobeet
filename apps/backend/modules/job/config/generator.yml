@@ -33,6 +33,8 @@ generator:
           extend:     ~
           _edit:      ~
           _delete:    ~
+        actions:
+          deleteNeverActivated: { label: Delete never activated jobs }
       filter:  ~
       form:    ~
       edit:    
