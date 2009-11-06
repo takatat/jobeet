@@ -36,7 +36,8 @@ generator:
         actions:
           deleteNeverActivated: { label: Delete never activated jobs }
         table_method: retrieveBackendJobList
-      filter:  ~
+      filter:
+        display: [category_id, company, position, description, is_activated, is_public, email, expires_at]
       form:    
         display:
           Content: [category_id, type, company, logo, url, position, location, description, how_to_apply, is_public, email]
