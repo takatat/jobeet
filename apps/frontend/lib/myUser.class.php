@@ -2,6 +2,11 @@
 
 class myUser extends sfBasicSecurityUser
 {
+  public function resetJobHistory()
+  {
+    $this->getAttributeHolder()->remove('job_history');
+  }
+
   public function addJobToHistory(JobeetJob $job)
   {
     $ids = $this->getAttribute('job_history', array());
