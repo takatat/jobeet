@@ -21,6 +21,12 @@ test:
 
 all:
   .settings:
+    enabled_modules: [default, sfGuardAuth, sfGuardUser]
+
+  .actions:
+    login_module:    sfGuardAuth
+    login_action:    signin
+
     # Form security secret (CSRF protection)
     csrf_secret:       UniqueSecret1     # Unique secret to enable CSRF protection or false to disable
 
