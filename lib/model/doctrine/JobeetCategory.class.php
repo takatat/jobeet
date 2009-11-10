@@ -26,4 +26,11 @@ class JobeetCategory extends BaseJobeetCategory
  
     return Doctrine::getTable('JobeetJob')->addActiveJobsQuery($q);
   }
+
+  public function getLatestPost()
+  {
+    $jobs = $this->getActiveJobs(1);
+ 
+    return $jobs[0];
+  }
 }
