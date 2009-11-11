@@ -15,7 +15,23 @@ class affiliateActions extends autoAffiliateActions
 {
   public function executeListActivate()
   {
-    $this->getRoute()->getObject()->activate();
+    $affiliate = $this->getRoute()->getObject();
+    $affiliate->activate();
+ 
+    ProjectConfiguration::registerZend();
+    $mail = new Zend_Mail();
+    $mail->setBodyText(<<<EOF
+Your Jobeet affiliate account has been activated.
+ 
+Your token is {$affiliate->getToken()}.
+ 
+The Jobeet Bot.
+EOF
+);
+    $mail->setFrom('bot@jobeet.vm', 'Jobeet Bot');
+    $mail->addTo($affiliate->getEmail());
+    $mail->setSubject('Jobeet affiliate token');
+    $mail->send();
  
     $this->redirect('@jobeet_affiliate_affiliate');
   }
