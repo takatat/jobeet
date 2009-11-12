@@ -32,7 +32,7 @@ class JobeetTestFunctional extends sfTestFunctional
   public function createJob($values = array(), $publish = false)
   {
     $this->
-      get('/job/new')->
+      get('/en/job/new')->
       click('Preview your job', array('job' => array_merge(array(
         'company'      => 'Sensio Labs',
         'url'          => 'http://www.sensio.com/',
