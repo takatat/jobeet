@@ -32,7 +32,67 @@ class JobeetJob extends BaseJobeetJob
       $this->setToken(sha1($this->getEmail().rand(11111, 99999)));
     }
 
-    return parent::save($conn);
+    $conn = $conn ? $conn : $this->getTable()->getConnection();
+    $conn->beginTransaction();
+    try
+    {
+      $ret = parent::save($conn);
+ 
+      $this->updateLuceneIndex();
+
+      $conn->commit();
+ 
+      return $ret;
+    }
+    catch (Exception $e)
+    {
+      $conn->rollBack();
+      throw $e;
+    }
+  }
+
+  public function updateLuceneIndex()
+  {
+    $index = $this->getTable()->getLuceneIndex();
+ 
+    // 既存のエントリを削除する
+    foreach ($index->find('pk:'.$this->getId()) as $hit)
+    {
+      $index->delete($hit->id);
+    }
+ 
+    // 有効期限切れおよびアクティブではない求人をインデックスに登録しない
+    if ($this->isExpired() || !$this->getIsActivated())
+    {
+      return;
+    }
+ 
+    $doc = new Zend_Search_Lucene_Document();
+ 
+    // 検索結果で区別できるようにjobの主キーを保存する
+    $doc->addField(Zend_Search_Lucene_Field::Keyword('pk', $this->getId()));
+ 
+    // jobフィールドをインデックスに登録する
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('position', $this->getPosition(), 'utf-8'));
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('company', $this->getCompany(), 'utf-8'));
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('location', $this->getLocation(), 'utf-8'));
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('description', $this->getDescription(), 'utf-8'));
+ 
+    // 求人をインデックスに追加する
+    $index->addDocument($doc);
+    $index->commit();
+  }
+
+  public function delete(Doctrine_Connection $conn = null)
+  {
+    $index = $this->getTable()->getLuceneIndex();
+ 
+    if ($hit = $index->find('pk:'.$this->getId()))
+    {
+      $index->delete($hit->id);
+    }
+ 
+    return parent::delete($conn);
   }
 
   public function publish()
