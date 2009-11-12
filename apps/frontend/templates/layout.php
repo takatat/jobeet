@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="<?php echo url_for('@job?sf_format=atom', true) ?>" />
     <?php use_javascript('jquery-1.3.2.min.js') ?>
+    <?php use_javascript('search.js') ?>
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
   </head>
@@ -34,6 +35,7 @@
               <form action="<?php echo url_for('@job_search') ?>" method="get">
                 <input type="text" name="query" value="<?php echo $sf_request->getParameter('query') ?>" id="search_keywords" />
                 <input type="submit" value="search" />
+                <img id="loader" src="/images/loader.gif" style="vertical-align: middle; display: none" />
                 <div class="help">
                   Enter some keywords (city, country, position, ...)
                 </div>

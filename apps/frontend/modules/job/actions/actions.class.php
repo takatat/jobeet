@@ -94,6 +94,18 @@ class jobActions extends sfActions
     }
  
     $this->jobs = Doctrine::getTable('JobeetJob') ->getForLuceneQuery($query);
+
+    if ($request->isXmlHttpRequest())
+    {
+      if ('*' == $query || !$this->jobs)
+      {
+        return $this->renderText('No results.');
+      }
+      else
+      {
+        return $this->renderPartial('job/list', array('jobs' => $this->jobs));
+      }
+    }
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
