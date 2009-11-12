@@ -9,6 +9,7 @@
     </title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="<?php echo url_for('@job?sf_format=atom', true) ?>" />
+    <?php use_javascript('jquery-1.3.2.min.js') ?>
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
   </head>
