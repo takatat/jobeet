@@ -62,6 +62,10 @@ localized_homepage:
   requirements:
     sf_culture: (?:fr|en)
 
+change_language:
+  url:   /change_language
+  param: { module: language, action: changeLanguage }
+
 # default rules
 homepage:
   url:   /

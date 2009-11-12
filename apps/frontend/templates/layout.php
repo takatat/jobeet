@@ -76,6 +76,10 @@
  
       <div id="footer">
         <div class="content">
+          <!-- footer content -->
+ 
+          <?php include_component('language', 'language') ?>
+
           <span class="symfony">
             <img src="/images/jobeet-mini.png" />
             powered by <a href="http://www.symfony-project.org/">
