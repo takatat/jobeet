@@ -9,6 +9,11 @@
  */
 abstract class PluginJobeetJobForm extends BaseJobeetJobForm
 {
+  public function __construct(sfDoctrineRecord $object = null, $options = array(), $CSRFSecret = null)
+  {
+    parent::__construct($object, $options, false);
+  }
+
   public function setup()
   {
     parent::setup();

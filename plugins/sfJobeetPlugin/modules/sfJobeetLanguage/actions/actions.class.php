@@ -26,6 +26,7 @@ class sfJobeetLanguageActions extends sfActions
       $this->getUser(),
       array('languages' => array('en', 'fr'))
     );
+    unset($form[$form->getCSRFFieldName()]);
  
     $form->process($request);
  
