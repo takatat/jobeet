@@ -89,7 +89,7 @@
             <li><a href=""><?php echo __('Jobeet API') ?></a></li>
             <li class="last"><?php echo link_to(__('Become an affiliate'), '@affiliate_new') ?></li>
           </ul>
-          <?php include_component('language', 'language') ?>
+          <?php include_component('sfJobeetLanguage', 'language') ?>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class jobActions extends sfActions
+class sfJobeetJobActions extends sfActions
 {
   public function executePublish(sfWebRequest $request)
   {
@@ -87,7 +87,7 @@ class jobActions extends sfActions
     $job = $this->getRoute()->getObject();
     $job->delete();
 
-    $this->redirect('job/index');
+    $this->redirect('sfJobeetJob/index');
   }
 
   public function executeExtend(sfWebRequest $request)
@@ -106,7 +106,7 @@ class jobActions extends sfActions
   {
     if (!$query = $request->getParameter('query'))
     {
-      return $this->forward('job', 'index');
+      return $this->forward('sfJobeetJob', 'index');
     }
  
     $this->jobs = Doctrine::getTable('JobeetJob') ->getForLuceneQuery($query);
@@ -119,7 +119,7 @@ class jobActions extends sfActions
       }
       else
       {
-        return $this->renderPartial('job/list', array('jobs' => $this->jobs));
+        return $this->renderPartial('sfJobeetJob/list', array('jobs' => $this->jobs));
       }
     }
   }

@@ -11,6 +11,6 @@
   <id><?php echo sha1(url_for('@job?sf_format=atom', true)) ?></id>
 
 <?php foreach ($categories as $category): ?>
-  <?php include_partial('job/list', array('jobs' => $category->getActiveJobs(sfConfig::get('app_max_jobs_on_homepage')))) ?>
+  <?php include_partial('sfJobeetJob/list', array('jobs' => $category->getActiveJobs(sfConfig::get('app_max_jobs_on_homepage')))) ?>
 <?php endforeach; ?>
 </feed>

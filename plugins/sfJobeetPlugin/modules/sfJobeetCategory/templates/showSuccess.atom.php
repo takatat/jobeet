@@ -10,5 +10,5 @@
   </author>
   <id><?php echo sha1(url_for('category', array('sf_subject' => $category), true)) ?></id>
  
-  <?php include_partial('job/list', array('jobs' => $pager->getResults())) ?>
+  <?php include_partial('sfJobeetJob/list', array('jobs' => $pager->getResults())) ?>
 </feed>

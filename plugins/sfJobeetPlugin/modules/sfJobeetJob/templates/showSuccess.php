@@ -6,7 +6,7 @@
 ?>
 
 <?php if ($sf_request->getParameter('token') == $job->getToken()): ?>
-  <?php include_partial('job/admin', array('job' => $job)) ?>
+  <?php include_partial('sfJobeetJob/admin', array('job' => $job)) ?>
 <?php endif; ?>
 
 <div id="job">
