@@ -4,6 +4,22 @@
   <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2009-11-13T11:14:22Z" product-name="messages">
     <header/>
     <body>
+      <trans-unit id="1">
+        <source>About Jobeet</source>
+        <target>A propos de Jobeet</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Full feed</source>
+        <target>Fil RSS</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Jobeet API</source>
+        <target>API Jobeet</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Become an affiliate</source>
+        <target>Devenir un affilie'</target>
+      </trans-unit>
       <trans-unit id="5">
         <source>and %count% more...</source>
         <target>et %count% autres...</target>

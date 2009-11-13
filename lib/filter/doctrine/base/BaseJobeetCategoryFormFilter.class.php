@@ -14,18 +14,14 @@ class BaseJobeetCategoryFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'name'                   => new sfWidgetFormFilterInput(),
       'created_at'             => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'             => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'slug'                   => new sfWidgetFormFilterInput(),
       'jobeet_affiliates_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'JobeetAffiliate')),
     ));
 
     $this->setValidators(array(
-      'name'                   => new sfValidatorPass(array('required' => false)),
       'created_at'             => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'             => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'slug'                   => new sfValidatorPass(array('required' => false)),
       'jobeet_affiliates_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'JobeetAffiliate', 'required' => false)),
     ));
 
@@ -61,10 +57,8 @@ class BaseJobeetCategoryFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                     => 'Number',
-      'name'                   => 'Text',
       'created_at'             => 'Date',
       'updated_at'             => 'Date',
-      'slug'                   => 'Text',
       'jobeet_affiliates_list' => 'ManyKey',
     );
   }
