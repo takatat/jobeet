@@ -41,7 +41,13 @@
  
 <div class="pagination_desc">
   <strong><?php echo $pager->getNbResults() ?></strong> jobs in this category
- 
+<?php echo format_number_choice(
+    '[0]No job in this category|[1]One job in this category|(1,+Inf]%count% jobs in this category',
+    array('%count%' => '<strong>'.$pager->getNbResults().'</strong>'),
+    $pager->getNbResults()
+  )
+?>
+
   <?php if ($pager->haveToPaginate()): ?>
     - page <strong><?php echo $pager->getPage() ?>/<?php echo $pager->getLastPage() ?></strong>
   <?php endif; ?>
