@@ -3,6 +3,13 @@ prod:
     no_script_name:         on
     logging_enabled:        off
 
+cache:
+  .settings:
+    error_reporting: <?php echo (E_ALL | E_STRICT)."\n" ?>
+    web_debug:       on
+    cache:           on
+    etag:            off
+
 dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
