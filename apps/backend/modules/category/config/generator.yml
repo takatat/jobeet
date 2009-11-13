@@ -22,6 +22,6 @@ generator:
         class: false
       form:    ~
       edit:    
-        title: Editing Category "%%name%%"
+#        title: Editing Category "%%name%%" (#%%id%%)
       new:     
         title: New Category
