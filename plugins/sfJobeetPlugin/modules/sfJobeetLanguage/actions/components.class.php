@@ -8,6 +8,6 @@ class sfJobeetLanguageComponents extends sfComponents
       $this->getUser(),
       array('languages' => array('en', 'fr'))
     );
-    unset($form[$form->getCSRFFieldName()]);
+    unset($form[$this->form->getCSRFFieldName()]);
   }
 }

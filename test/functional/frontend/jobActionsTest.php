@@ -10,7 +10,7 @@ $browser->loadData();
 $browser->info('1 - The homepage')->
   get('/en/')->
   with('request')->begin()->
-    isParameter('module', 'job')->
+    isParameter('module', 'sfJobeetJob')->
     isParameter('action', 'index')->
   end()->
   with('response')->begin()->
@@ -47,7 +47,7 @@ $browser->info('2 - The job page')->
   info('  2.1 - Each job on the homepage is clickable and give detailed information')->
   click('Web Developer', array(), array('position' => 1))->
   with('request')->begin()->
-    isParameter('module', 'job')->
+    isParameter('module', 'sfJobeetJob')->
     isParameter('action', 'show')->
     isParameter('company_slug', 'sensio-labs')->
     isParameter('location_slug', 'paris-france')->
@@ -69,7 +69,7 @@ $browser->info('3 - Post a Job page')->
  
   get('/en/job/new')->
   with('request')->begin()->
-    isParameter('module', 'job')->
+    isParameter('module', 'sfJobeetJob')->
     isParameter('action', 'new')->
   end()->
 
@@ -86,7 +86,7 @@ $browser->info('3 - Post a Job page')->
   )))->
  
   with('request')->begin()->
-    isParameter('module', 'job')->
+    isParameter('module', 'sfJobeetJob')->
     isParameter('action', 'create')->
   end()->
 
@@ -100,7 +100,7 @@ $browser->info('3 - Post a Job page')->
   followRedirect()->
  
   with('request')->begin()->
-    isParameter('module', 'job')->
+    isParameter('module', 'sfJobeetJob')->
     isParameter('action', 'show')->
     end()->
 
@@ -258,4 +258,17 @@ $browser->
   get('/')->
   isRedirected()->followRedirect()->
   with('user')->isCulture('fr')
+;
+
+$browser->
+  info('  7 - Job creation page')->
+ 
+  get('/fr/')->
+  with('view_cache')->isCached(true, false)->
+ 
+  createJob(array('category_id' => Doctrine::getTable('JobeetCategory')->findOneBySlug('programming')->getId()), true)->
+ 
+  get('/fr/')->
+  with('view_cache')->isCached(true, false)->
+  with('response')->checkElement('.category_programming .more_jobs', '/23/')
 ;
