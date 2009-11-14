@@ -31,10 +31,19 @@ all:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
 
+#  storage:
+#    class: sfSessionStorage
+#    param:
+#      session_name: jobeet
   storage:
-    class: sfSessionStorage
+    class: sfPDOSessionStorage
     param:
       session_name: jobeet
+      db_table:     session
+      database:     doctrine
+      db_id_col:    id
+      db_data_col:  data
+      db_time_col:  time
 
 #all:
 #  controller:
