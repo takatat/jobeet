@@ -1,0 +1,6 @@
+CREATE TABLE `session` (
+  `id` varchar(255) NOT NULL,
+  `data` longtext NOT NULL,
+  `time` bigint(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
