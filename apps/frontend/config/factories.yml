@@ -45,6 +45,11 @@ all:
       db_data_col:  data
       db_time_col:  time
 
+  user:
+    class: myUser
+    param:
+      timeout: 1800
+
 #all:
 #  controller:
 #    class: sfFrontWebController
