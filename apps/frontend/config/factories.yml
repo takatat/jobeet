@@ -31,6 +31,11 @@ all:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
 
+  storage:
+    class: sfSessionStorage
+    param:
+      session_name: jobeet
+
 #all:
 #  controller:
 #    class: sfFrontWebController
